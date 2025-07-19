@@ -6,20 +6,13 @@ const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 
 module.exports = {
   input: 'src/index.js',
-  output: [
-    {
-      file: 'dist/index.js',
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true
-    },
-    {
-      file: 'dist/index.esm.js',
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true
-    }
-  ],
+  output: {
+    file: 'dist/index.js',
+    format: 'cjs',
+    exports: 'named',
+    sourcemap: true,
+    interop: 'auto'
+  },
   plugins: [
     peerDepsExternal(),
     resolve({
@@ -28,13 +21,22 @@ module.exports = {
     }),
     commonjs(),
     postcss({
-      extract: true,
+      extract: 'index.css',
       minimize: true
     }),
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      presets: [
+        ['@babel/preset-env', { 
+          targets: { 
+            browsers: ['last 2 versions'] 
+          },
+          modules: false 
+        }],
+        '@babel/preset-react'
+      ]
     })
   ],
   external: ['react', 'react-dom']

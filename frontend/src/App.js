@@ -1,14 +1,10 @@
 import React from 'react';
-import { Button } from 'tenebra-ui';
+import { Button } from 'tenebra-ui'; // Adjust the import path as necessary
 
 function App() {
   return (
     <div className="App">
-      <Button variant="primary" size="lg">
-        Hello from UI Library!
-      </Button>
-      <Button variant="secondary" onClick={() => alert('Clicked!')}>
-        Secondary Button
+      <Button>
       </Button>
     </div>
   );
