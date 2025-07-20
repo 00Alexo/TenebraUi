@@ -1,12 +1,15 @@
-import React from 'react';
-import { Button } from 'tenebra-ui'; // Adjust the import path as necessary
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CompTesting from './pages/CompTesting';
 
 function App() {
   return (
-    <div className="App">
-      <Button>
-      </Button>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes> 
+          <Route path = "/" element={<CompTesting/>}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
